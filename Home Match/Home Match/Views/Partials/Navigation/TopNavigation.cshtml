@@ -1,0 +1,68 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage
+@using Umbraco.Web;
+@{
+	var site = Model.Root();
+	var selection = site.Children.Where(x => x.IsVisible());
+	var SettingsNode = @Umbraco.Content(1142);
+	var Settings = new SiteSettings(SettingsNode);
+}
+
+<nav class="navbar navbar-expand-lg navbar-light d-flex flex-md-row pt-3 pb-2 px-md-4 bg-white border-bottom box-shadow">
+	<div class="my-0 mr-md-auto font-weight-normal d-block d-md-flex">
+		@if (@Model.Url != "/")
+		{
+		<a href="/">
+			<div class="img-hover-shine">
+				<figure>
+					<img class="logo h-100 mx-auto d-block" src="@Settings.Logo.Url" alt="@Settings.Sitename logo" />
+				</figure>
+			</div>
+		</a>
+		}
+		else
+		{
+			<img class="logo h-100 mx-auto d-block" src="@Settings.Logo.Url" alt="@Settings.Sitename logo" />
+		}
+
+		<p class="d-none navbar-catch py-0 px-5 m-0 text-center text-md-left my-3 m-md-0">@Settings.NavbarCatchphrase</p>
+	</div>
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	</button>
+	<div id="navbarToggler" class="my-2 my-md-0 mr-md-3 navbar-collapse collapse">
+		<div class="text-right pb-3 d-none d-xl-block">
+			<img class="icon" src="@Settings.PhoneIcon.Url" alt="Phone icon" /><a class="p-2 text-muted" href="tel:@Settings.Phone">@Settings.Phone</a>
+			<img class="icon ml-5" src="@Settings.LoginButtonIcon.Url" alt="Login icon" /><a class="p-2 text-muted" href="#">Client login</a>
+		</div>
+		<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+			@foreach (var item in selection)
+			{
+				if (item.Children.Any())
+				{
+
+					<li class="nav-item special-ul-hover toggle-item">
+						<div class="show">
+							<a class="nav-link text-center double-click-open ml-4 p-2 @(item.IsAncestorOrSelf(Model) ? "active": "")" hreflang="en-gb" rel="canonical" href="@item.Url" role="button" id="dropdownMenuLink"
+							   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+								@item.Name
+							</a>
+							<div class="dropdown-menu ml-4 p-1 text-center text-xl-left" aria-labelledby="dropdownMenuLink">
+								@foreach (var children in item.Children)
+								{
+									<a class="dropdown-item px-2 py-3 @(item.IsAncestorOrSelf(Model) ? "active": "")" hreflang="en-gb" rel="canonical" href="@children.Url()">@children.Name</a>
+								}
+							</div>
+						</div>
+					</li>
+				}
+				else
+				{
+					<li class="nav-item @(item.IsAncestorOrSelf(Model) ? "nav-link--active" : null)">
+						<a class="nav-link ml-4 p-2 text-dark nav-item" href="@item.Url">@item.Name</a>
+					</li>
+				}
+			}
+
+		</ul>
+	</div>
+</nav>

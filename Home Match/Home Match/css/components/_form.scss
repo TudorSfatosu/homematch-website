@@ -1,0 +1,283 @@
+.hm-form {
+  .main-container {
+    padding-bottom: 6em;
+    @include mq(xl) {
+      padding-bottom: 8em;
+    }
+  }
+
+  &.contact-form {
+    .hm-form-group:first-child {
+      padding-top: 1em;
+    }
+  }
+  .intro-text {
+    padding: 2em 0 1em;
+  }
+
+  .yellow-bg {
+    input {
+      border: 0;
+    }
+
+    .form-msg {
+        .mail-list {
+            border-top:1px solid #d0d389;
+        }
+    }
+  }
+
+    .form-msg {
+        padding:20px 0;
+
+        .text-danger {
+            font-size: 0.875em;
+            font-weight: 300;
+            color: #dd413a !important;
+            margin: 0;
+            text-transform:uppercase;
+        }
+
+        p {
+            font-size: 0.875em;
+            font-weight: 300;
+            margin: 0;
+            text-transform:uppercase;
+            line-height:150%;
+
+            &.success {
+                color:#009900;
+            }
+        }
+
+        .mail-list {
+            margin-top:30px;
+            padding:30px 0;
+            border-top:1px solid #bdc3c8;
+
+            p {
+                font-size: 0.875em;
+                font-weight: 300;
+                color:#009900;
+                margin: 0;
+                line-height:150%;
+                text-transform:initial;
+
+                a {
+                    color:#cccccc;
+                }
+            }
+        }
+    }
+
+  label,
+  .btn,
+  h2 {
+    text-transform: uppercase;
+  }
+
+  form {
+    padding-right: 0;
+    @include mq(xl) {
+      padding-top: 2em;
+      padding-right: 2em;
+    }
+    input {
+      height: 3em;
+
+        &.chk {
+            width: 20px;
+            display: inline;
+            margin: 0;
+        }
+    }
+    select.form-control:not([size]):not([multiple]) {
+      height: 3em;
+    }
+
+    .hm-form-group:first-child {
+      padding-top: 2em;
+      @include mq(sm) {
+        padding-top: 3em;
+      }
+      @include mq(md) {
+        padding-top: 4em;
+      }
+      @include mq(lg) {
+        padding-top: 5em;
+      }
+      @include mq(xl) {
+        padding-top: 6em;
+      }
+    }
+    .hm-form-group:not(:first-child) {
+      padding-top: 2em;
+    }
+    .form-group--select,
+    .form-group--textarea {
+      padding-top: 2em;
+    }
+    textarea {
+      height: 10em;
+    }
+  }
+  .hm-form-image {
+    width: 100%;
+    margin-top: -3em;
+    @include mq(xl) {
+      margin-top: -4em;
+    }
+  }
+    .text-danger {
+        font-size: .875em;
+        font-weight: 100;
+        text-transform: uppercase;
+        display: block;
+        color: #dd413a !important;
+        margin-top: 6px;
+    }
+}
+
+.hm-form-btn {
+	margin-top: 2em;
+	background: white;
+	padding: 1em;
+	width: 12em;
+	border-radius: 2px;
+	@include mq(xl) {
+		padding: 1rem;
+	}
+}
+
+.hm-form-btn {
+  text-transform: uppercase;
+}
+
+.small-hm-form-image {
+  width: 100%;
+}
+
+.download-container {
+  padding-top: 4em;
+  @include mq(sm) {
+    padding: 0;
+    position: absolute;
+    bottom: 0;
+  }
+}
+
+.login-form {
+	form {
+		border: 1px solid #f1f1f1;
+		box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	}
+
+	.caption {
+		color: darken($blue, 14%);
+		font-weight: 700;
+		font-size: 19px;
+		text-align: left;
+		padding-left: 1em;
+		padding-top: 1em;
+		padding-bottom: 1em;
+		border-bottom: 1px solid $grey;
+	}
+
+	label,
+	.caption {
+		text-transform: uppercase;
+	}
+
+	label {
+		color: lighten($grey, 15%);
+	}
+
+	input[type=text], input[type=password] {
+		width: 100%;
+		padding: 12px 20px;
+		margin: 8px 0;
+		display: inline-block;
+		border: 1px solid #ccc;
+		box-sizing: border-box;
+	}
+
+	button {
+		background: $fluorescent-green;
+		color: ligten($black, 10%);
+		padding: 14px 20px;
+		margin: 8px 0;
+		border: none;
+		cursor: pointer;
+		width: 100%;
+	}
+
+	button:hover {
+		opacity: 0.8;
+	}
+
+	.imgcontainer {
+		margin: 24px 0 12px 0;
+		text-align: left;
+
+		img {
+			width: 74%;
+			padding-left: 1em;
+		}
+	}
+
+	.container {
+		padding: 16px;
+	}
+
+	span.psw {
+		float: right;
+		padding-top: 1em;
+
+		a {
+			color: darken($blue, 14%);
+			font-size: 1em;
+		}
+	}
+	/* Change styles for span and cancel button on extra small screens */
+	@media screen and (max-width: 300px) {
+		span.psw {
+			display: block;
+			float: none;
+		}
+
+		.cancelbtn {
+			width: 100%;
+		}
+	}
+}
+
+.full-height-html {
+  height: 100%;
+}
+
+.v-cent-body-helper {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.map {
+	width: 100%;
+	height: 30em;
+	@include mq(sm) {
+		height: 20em;
+	}
+
+	@include mq(md) {
+		height: 23em;
+	}
+
+	@include mq(lg) {
+		height: 25em;
+	}
+
+	@include mq(xl) {
+		height: 34em;
+	}
+}

@@ -1,0 +1,11 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage
+@{
+	var SettingsNode = @Umbraco.Content(1142);
+	var Settings = new SiteSettings(SettingsNode);
+}
+
+<div class="row d-none d-md-block">
+	<div class="mx-auto">
+		<a href="@Settings.SideButtonLink.Url" class="btn-z btn btn-lg btn-block btn-@Settings.SideButtonColor.Label">@Settings.SideButtonText</a>
+	</div>
+</div>

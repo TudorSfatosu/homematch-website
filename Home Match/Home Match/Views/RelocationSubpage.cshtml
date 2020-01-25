@@ -1,0 +1,147 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage<ContentModels.RelocationSubpage>
+@using ContentModels = Umbraco.Web.PublishedModels;
+@{
+	Layout = "master.cshtml";
+	var count = 0;
+}
+
+@Html.Partial("SideButton")
+
+@Html.Partial("SimpleBanner2")
+
+<section class="container wide-container">
+
+	<div class="row pt-5 pb-2">
+		<div class="col-12 text-center">
+			<h1 class="blue-text heavy-text">@Model.H1</h1>
+		</div>
+	</div>
+
+	@if (@Model.IntroText != null)
+	{
+		<div class="row pt-2 pb-3">
+			@if (@Model.PageIcon != null)
+			{
+				<div class="col-1 text-center">
+					<img class="page-icon d-none d-lg-block" src="@Model.PageIcon.Url" width="100" alt="@Path.GetFileNameWithoutExtension(@Model.PageIcon.Url).Replace("-", " ")" />
+				</div>
+			}
+			<div class="col-10 text-center">
+				<h4 class="blue-text">@Model.IntroText</h4>
+			</div>
+		</div>
+	}
+
+	<div class="row pt-3 p-5">
+		<div class="col-12 text-center">
+			<h5 class="text-muted">@Model.IntroSubtext</h5>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="my-0 mx-auto pb-5">
+			<a href="@Model.Button1Link" class="btn btn-md btn-block btn-blue">@Model.Button1Text</a>
+		</div>
+	</div>
+
+</section>
+
+<section class="container widest-container px-4 pb-xl-5 px-lg-5">
+
+	<div class="row">
+		<div class="col-12 heavy-text pb-4">
+			@Model.StepsTitle
+		</div>
+	</div>
+
+	@if (Model.Steps.Any())
+	{
+
+		foreach (var steps in @Model.Steps)
+		{
+			count++;
+			var step = new StepSection(steps);
+
+			<div class="row mb-5 box-shadow-2">
+				<div class="order-1 @(@count % 2 == 0 ? "order-md-1": "order-md-0") col-12 col-md-4 p-3">
+
+					@if (step.Bullets.Any())
+					{
+						<ul class="step-bullets">
+							@foreach (var bullets in @step.Bullets)
+
+							{
+								var bullet = new Bullets(bullets);
+								<li class="step-bullet pb-3">
+									@bullet.BulletText.
+								</li>
+							}
+
+						</ul>
+					}
+
+				</div>
+
+				<div class="order-0 @(@count % 2 == 0 ? "order-md-0": "order-md-1") col-12 col-md-8 step-image" style="background: url(@step.Image.Url()); background-position-x: @(@count % 2 == 0 ? "right": "left");">
+					<div class="row">
+						<div class="d-none d-lg-block col-lg-3 col-md-6 col-xl-6 @(@count % 2 == 0 ? "order-0": "order-2")">
+
+						</div>
+						<div class="col-1 order-0">
+							<span class="step-number @step.StepNumberColor.Label-text @step.StepNumberCircleColor.Label-circle">
+								@step.StepNumber
+							</span>
+						</div>
+						<div class="col-12 col-lg-7 col-xl-5 order-1 px-3 px-xl-5">
+							<h5 class="step-title py-3 @step.StepTitleColor.Label-text">
+								@step.StepTitle
+							</h5>
+
+							<div class="step-text white-text pb-4">
+								@step.StepText
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		}
+	}
+</section>
+
+
+
+<section class="single-iso-background hero-iso mb-5" style="background: url('@Model.IsoBackground.Url')">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="pb-4 pb-sm-5 pb-xl-0 offset-xl-2 col-12 col-xl-3 iso-text text-center text-xl-left">
+				@Model.IsoText
+			</div>
+			<div class="d-flex col-12 col-xl-7 iso-images">
+				@if (Model.IsoImages.Any())
+				{
+					foreach (var images in @Model.IsoImages)
+					{
+						var image = new Images(images);
+						<a class="pb-4 pb-sm-0" href="@image.Link" target="_blank">
+							<img src="@image.Image.Url" alt="@image.Text logo" />
+						</a>
+					}
+				}
+			</div>
+		</div>
+	</div>
+</section>
+
+<div class="container">
+	<div class="card-deck mb-3 text-center">
+
+		@if (Model.NavigationCards.Any())
+		{
+			foreach (var cards in @Model.NavigationCards)
+			{
+				@Html.Partial("NavigationCards", new NavCard(cards));
+			}
+		}
+	</div>
+</div>

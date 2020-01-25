@@ -1,0 +1,160 @@
+nav {
+	.logo {
+		width: 10em;
+
+		@include mq(sm) {
+			width: 12em;
+		}
+
+		@include mq(md) {
+			width: 14em;
+		}
+
+		@include mq(lg) {
+			width: 15em;
+		}
+
+		@include mq(xl) {
+			width: 17em;
+		}
+	}
+
+	.navbar-catch {
+		background: white;
+		z-index: 99;
+		font-size: 1em;
+		width: 80%;
+
+		@include mq(md) {
+			font-size: 1.25em;
+			width: 19em;
+		}
+
+		@include mq(xl) {
+			font-size: 1.5em;
+			width: 20em;
+			line-height: 40px;
+		}
+	}
+
+	.nav-item {
+		font-weight: 600;
+	}
+
+	.navbar-collapse {
+		@include mq(lg) {
+			display: block !important;
+		}
+
+		.navbar-nav {
+			text-align: center;
+
+			@include mq(lg) {
+				text-align: right;
+				float: right;
+			}
+		}
+	}
+
+	.navbar-catch {
+		@include mq(xxl) {
+			display: flex !important;
+		}
+	}
+}
+
+.dropdown-menu {
+	border: none;
+	left: auto;
+	border-radius: 0;
+	margin-top: 0;
+	padding: 0.25rem 0;
+	margin-left: 1rem;
+	@include mq(md) {
+		background: $blue;
+		margin-left: 0;
+	}
+
+	.dropdown-item {
+		padding: 0.75rem 0;
+		border-bottom: 1px solid #ddd;
+		box-shadow: 0 3px 2px -2px rgba(200, 200, 200, 0.2);
+
+		@include mq(sm) {
+			padding: 0.75rem 1.5rem;
+		}
+	}
+
+	transition: .5s ease-in-out;
+
+	&.show {
+		transition: .5s ease-in-out;
+	}
+
+	@include mq(md) {
+		.dropdown-item:hover,
+		.dropdown-item:focus,
+		.dropdown-item:active {
+			background: $white !important;
+			color: darken($blue, 15%) !important;
+		}
+
+		.dropdown-item.active {
+			background: lighten(#4D5C68, 10%) !important;
+			color: darken(#fff, 10%) !important;
+		}
+
+		a {
+			color: $white !important;
+		}
+
+		a:hover {
+			color: $blue !important;
+		}
+	}
+}
+
+// Logo hover
+.img-hover-shine div {
+	position: relative;
+	float: left;
+	margin: 0 0 0 25px;
+	padding: 0;
+}
+
+/* Shine */
+.img-hover-shine figure {
+	position: relative;
+}
+
+.img-hover-shine figure::before {
+	position: absolute;
+	top: 0;
+	left: -75%;
+	z-index: 2;
+	display: block;
+	content: '';
+	width: 50%;
+	height: 100%;
+	background: -webkit-linear-gradient(left, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, .3) 100%);
+	background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, .3) 100%);
+	-webkit-transform: skewX(-25deg);
+	transform: skewX(-25deg);
+}
+
+.img-hover-shine figure:hover::before {
+	-webkit-animation: shine 1.75s;
+	animation: shine 1.75s;
+}
+
+@-webkit-keyframes shine {
+	100% {
+		left: 125%;
+	}
+}
+
+@keyframes shine {
+	100% {
+		left: 125%;
+	}
+}

@@ -1,0 +1,13 @@
+/Home.Web.UI/App_Data/cache/
+
+/Home.Web.UI/App_Data/TEMP
+
+/Home.Web.UI/App_Data
+/Home.Web.UI/obj
+.vs
+.idea
+obj
+App_Data
+/Home Match/Home Match/Web.config
+/Home Match/Home Match/Web.Debug.config
+/Home Match/Home Match/Web.Release.config

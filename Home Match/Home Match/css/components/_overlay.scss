@@ -1,0 +1,39 @@
+.da-thumbs {
+	list-style: none;
+	li {
+		float: left;
+		position: relative;
+		a,
+		a img {
+			display: block;
+			position: relative;
+		}
+
+		a {
+			overflow: hidden;
+
+			.static-cont {
+				position: absolute;
+				width: 100%;
+			}
+		}
+
+		.paragraph {
+			min-height: 10em;
+		}
+	}
+}
+
+.da-thumbs li a .static-cont {
+	top: 0px;
+	left: -100%;
+	-webkit-transition: all 0.3s ease;
+	-moz-transition: all 0.3s ease-in-out;
+	-o-transition: all 0.3s ease-in-out;
+	-ms-transition: all 0.3s ease-in-out;
+	transition: all 0.3s ease-in-out;
+}
+
+.da-thumbs li a:hover .static-cont {
+	left: 0px;
+}

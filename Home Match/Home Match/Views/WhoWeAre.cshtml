@@ -1,0 +1,169 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage<ContentModels.WhoWeAre>
+@using ContentModels = Umbraco.Web.PublishedModels;
+@{
+	Layout = "master.cshtml";
+}
+
+@Html.Partial("SideButton")
+
+@Html.Partial("SimpleBanner")
+
+<section class="container wide-container">
+	<div class="row pt-5 pb-2">
+		<div class="col-12 text-center">
+			<h1 class="blue-text">@Model.H1</h1>
+		</div>
+	</div>
+	<div class="row pt-2 pb-3">
+		<div class="col-12 text-center">
+			<div class="blue-text heavy-text">@Model.IntroText</div>
+		</div>
+	</div>
+	<div class="row pt-3 pb-3">
+		<div class="col-12 col-md-4 text-center text-md-left pb-4 pb-md-0">
+			<div class="text-muted">@Model.TextBox1</div>
+		</div>
+		<div class="col-12 col-md-4 text-center text-md-left pb-4 pb-md-0">
+			<div class="text-muted">@Model.TextBox2</div>
+		</div>
+		<div class="col-12 col-md-4 text-center text-md-left pb-4 pb-md-0">
+			<div class="text-muted">@Model.TextBox3</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="my-0 mx-auto pb-5">
+			<a href="@Model.ActionButton1Text" class="btn btn-lg btn-block btn-blue">@Model.ActionButton1Text</a>
+		</div>
+	</div>
+</section>
+
+<section class="single-iso-background hero-iso" style="background: url('@Model.HeroBackground.Url')">
+	<div class="container">
+		<div class="row">
+			<div class="col-12 offset-md-2 col-md-8 px-5">
+				<img class="hero-image" src="@Model.HeroImage.Url" alt="@Path.GetFileNameWithoutExtension(@Model.HeroImage.Url).Replace("-", " ")" />
+				<h4 class="text-center blue-text pt-2">
+					@Model.HeroText
+				</h4>
+			</div>
+		</div>
+		<div class="row pt-4 pb-3">
+			<div class="my-0 mx-auto">
+				<a href="@Model.ActionButton1Text" class="btn btn-lg btn-block btn-green">@Model.ActionButton1Text</a>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section class="container pt-5">
+	<div class="row pt-3 pb-5">
+		<div class="col-12 text-center">
+			<h3 class="blue-text">@Model.ClientTitle</h3>
+		</div>
+	</div>
+	<div class="row active-with-click">
+		<div class="col-md-6 col-sm-6 col-xs-12">
+			<article class="material-card Light-Green">
+				<h2>
+					<span>Tom Hanks</span>
+					<strong>
+						<i class="fa fa-fw fa-star"></i>
+						Forrest Gump
+					</strong>
+				</h2>
+				<div class="mc-content">
+					<div class="img-container">
+						<img class="img-responsive" src="http://u.lorenzoferrara.net/marlenesco/material-card/thumb-tom-hanks.jpg">
+					</div>
+					<div class="mc-description">
+						He is known for his roles in Big (1988), Philadelphia (1993), Forrest Gump (1994), Apollo 13 (1995), Saving Private Ryan, You've Got Mail (both 1998), The Green Mile (1999), Cast Away (2000) ...
+					</div>
+				</div>
+				<a class="mc-btn-action">
+					<i class="fa fa-bars"></i>
+				</a>
+				<div class="mc-footer">
+					<h4>
+						Social
+					</h4>
+					<a class="fa fa-fw fa-facebook"></a>
+					<a class="fa fa-fw fa-twitter"></a>
+					<a class="fa fa-fw fa-linkedin"></a>
+					<a class="fa fa-fw fa-google-plus"></a>
+				</div>
+			</article>
+		</div>
+		<div class="col-md-6 col-sm-6 col-xs-12">
+			<article class="material-card Indigo">
+				<h2>
+					<span>Edward Norton</span>
+					<strong>
+						<i class="fa fa-fw fa-star"></i>
+						American History X
+					</strong>
+				</h2>
+				<div class="mc-content">
+					<div class="img-container">
+						<img class="img-responsive" src="http://u.lorenzoferrara.net/marlenesco/material-card/thumb-edward-norton.jpg">
+					</div>
+					<div class="mc-description">
+						He has been nominated for three Academy Awards for his work in the films Primal Fear, American History X and Birdman. He also starred in other roles ...
+					</div>
+				</div>
+				<a class="mc-btn-action">
+					<i class="fa fa-bars"></i>
+				</a>
+				<div class="mc-footer">
+					<h4>
+						Social
+					</h4>
+					<a class="fa fa-fw fa-facebook"></a>
+					<a class="fa fa-fw fa-twitter"></a>
+					<a class="fa fa-fw fa-linkedin"></a>
+					<a class="fa fa-fw fa-google-plus"></a>
+				</div>
+			</article>
+		</div>
+	</div>
+</section>
+
+
+<section class="container wide-container pt-5">
+	<div class="row pt-3">
+		<div class="col-12 text-center">
+			<h3 class="blue-text">@Model.PartnersTitle</h3>
+		</div>
+	</div>
+	<div class="paper-box pb-5 pb-md-0">
+		<div class="row ">
+			@if (Model.Cards.Any())
+			{
+				foreach (var cards in @Model.Cards)
+				{
+					var card = new Cards(cards);
+					<div class="col-12 col-md-4 px-5 pt-5 pb-2 text-center text-md-left">
+						<h4 class="pb-3">
+							@card.Title
+						</h4>
+						<p>
+							@card.Text
+						</p>
+						<a href="@card.Link" class="d-md-none btn btn-md btn-@card.ButtonColor.Label mt-2">Read More</a>
+					</div>
+				}
+			}
+		</div>
+		<div class="row d-none d-md-flex pb-4">
+			@if (Model.Cards.Any())
+			{
+				foreach (var cards in @Model.Cards)
+				{
+					var card = new Cards(cards);
+					<div class="col-12 col-md-4 px-5">
+						<a href="@card.Link" class="btn btn-md btn-@card.ButtonColor.Label">Read More</a>
+					</div>
+				}
+			}
+		</div>
+	</div>
+</section>

@@ -1,0 +1,21 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage<ContentModels.NavCard>
+@using ContentModels = Umbraco.Web.PublishedModels;
+
+<div class="card mb-4 box-shadow">
+	<div class="card-header" style="background: url(@Model.Image.Url)">
+		<h4 class="my-0 font-weight-normal white-text">@Model.Title</h4>
+		<img alt="@Model.Title icon" class="card-icon" src="@Model.Icon.Url" />
+	</div>
+	<div class="card-body">
+		<p class="mt-4 mb-2">
+			@Model.Text
+		</p>
+		<div class="text-right">
+			<div class="buttons-container">
+				<div class="box bg-1">
+					<a href="@Model.Link.Url()" class="button button--sacnite"><i class="button__icon icon icon icon-forward"></i></a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

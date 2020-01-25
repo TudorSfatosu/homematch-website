@@ -1,0 +1,129 @@
+﻿@*@model Models.ContactFormViewModel
+	@using Recaptcha.Web.Mvc*@
+
+
+@using (Html.BeginUmbracoForm("ContactFormSubmit", "ContactForm"))
+{
+	<!-- Name -->
+	@*<div class="hm-form-group form-group--text">
+			@Html.LabelFor(m => m.Name, htmlAttributes: new { @class = "control-label" })
+			@Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+			@Html.ValidationMessageFor(m => m.Name, "", new { @class = "text-danger" })
+		</div>*@
+	<!-- / Name -->
+
+	<!-- Company -->
+	@*<div class="hm-form-group form-group--text">
+			@Html.LabelFor(m => m.Company, htmlAttributes: new { @class = "control-label" })
+			@Html.TextBoxFor(m => m.Company, new { @class = "form-control" })
+			@Html.ValidationMessageFor(m => m.Company, "", new { @class = "text-danger" })
+		</div>*@
+	<!-- Company -->
+
+	<!-- Position/Job Title -->
+	@*<div class="hm-form-group form-group--text">
+			@Html.LabelFor(m => m.Position, htmlAttributes: new { @class = "control-label" })
+			@Html.TextBoxFor(m => m.Position, new { @class = "form-control" })
+			@Html.ValidationMessageFor(m => m.Position, "", new { @class = "text-danger" })
+		</div>*@
+	<!-- Position/Job Title -->
+
+	<!-- Telephone -->
+	@*<div class="hm-form-group form-group--text">
+			@Html.LabelFor(m => m.Tel, htmlAttributes: new { @class = "control-label" })
+			@Html.TextBoxFor(m => m.Tel, new { @class = "form-control" })
+			@Html.ValidationMessageFor(m => m.Tel, "", new { @class = "text-danger" })
+		</div>*@
+	<!-- / Telephone -->
+
+	<!-- Email -->
+	@*<div class="hm-form-group form-group--text">
+			@Html.LabelFor(m => m.Email, htmlAttributes: new { @class = "control-label" })
+			@Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+			@Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+		</div>*@
+	<!-- / Email -->
+
+	<!-- Address -->
+	@*<div class="hm-form-group form-group--textarea">
+			@Html.LabelFor(m => m.Message, htmlAttributes: new { @class = "control-label" })
+			@Html.TextAreaFor(m => m.Message, new { @class = "form-control", @rows = "5" })
+			@Html.ValidationMessageFor(m => m.Message, "", new { @class = "text-danger" })
+		</div>
+		<div class="hm-form-group">
+			<div class="row d-flex justify-content-center">
+				<div class="col-10 d-flex align-items-center">
+					@Html.LabelFor(m => m.Maillist, htmlAttributes: new { @class = "control-label" })
+				</div>
+				<div class="col-2 text-right">
+					@Html.CheckBoxFor(m => m.Maillist, new { @class = "form-control chk" })
+				</div>
+			</div>
+			<small class="form-text">@Model.gDPREmailMessage</small>
+			@Html.ValidationMessageFor(m => m.Maillist, "", new { @class = "text-danger" })
+		</div>
+		<div class="hm-form-group">
+			@Html.Recaptcha(theme: Recaptcha.Web.RecaptchaTheme.Clean)
+		</div>
+		<div class="text-center">
+			<button type="submit" class="btn hm-form-btn dark-blue-grey-text">Send Enquiry</button>
+		</div>*@
+	<!-- / Address -->
+}
+
+
+<!-- Brochure Form -->
+<section class="hm-form contact-form">
+	<div class="container-fluid">
+		<div class="row">
+			<div class=" px-0 mx-0 col-12 col-sm-6">
+				<div class="intro-text dark-blue-grey-text">
+					<h2 class="white-text">Enquiry</h2>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="container-fluid yellow-bg main-container">
+		<div class="row">
+			<div class="col-12">
+				<form class="dark-blue-grey-text">
+					<!-- Name -->
+					<div class="hm-form-group form-group--text">
+						<label class="form-label white-text" for="inputName">Name</label>
+						<input type="text" class="form-control" id="inputName" placeholder="">
+					</div>
+					<!-- / Name -->
+					<!-- Company -->
+					<div class="hm-form-group form-group--text">
+						<label class="form-label white-text" for="inputCompany">Company</label>
+						<input type="text" class="form-control" id="inputCompany" placeholder="">
+					</div>
+					<!-- Company -->
+					<!-- Telephone -->
+					<div class="hm-form-group form-group--text">
+						<label class="form-label white-text" for="inputPhone">Telephone</label>
+						<input type="tel" class="form-control" id="inputPhone" placeholder="">
+					</div>
+					<!-- Telephone -->
+					<!-- Email -->
+					<div class="hm-form-group form-group--text">
+						<label class="form-label white-text" for="inputEmail">Email</label>
+						<input type="email" class="form-control" id="inputEmail" placeholder="">
+					</div>
+					<!-- Email -->
+					<!-- Address -->
+					<div class="hm-form-group form-group--textarea">
+						<label class="form-label white-text" for="address">Enquiry</label>
+						<textarea class="form-control" id="address" rows="4"></textarea>
+					</div>
+					<div class="">
+						<button type="submit" class="btn hm-form-btn dark-blue-grey-text">Send Enquiry</button>
+					</div>
+
+					<!-- / Address -->
+				</form>
+			</div>
+		</div>
+	</div>
+</section>
+<!-- Brochure Form  -->

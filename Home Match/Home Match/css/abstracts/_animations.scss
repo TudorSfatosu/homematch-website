@@ -1,0 +1,81 @@
+/* Point-zoom Container */
+.img-hover-zoom--point-zoom img {
+	transition: transform 500ms, filter 500ms ease-out;
+}
+
+/* The Transformation */
+.img-hover-zoom--point-zoom:hover img {
+	transform: scale(1.05);
+}
+
+
+/*!
+ * ImageHover.css - http://www.imagehover.io
+ * Version 1.0
+ * Author: Ciarán Walsh
+
+ * Made available under a MIT License:
+ * http://www.opensource.org/licenses/mit-license.php
+
+ */
+[class^='imghvr-'], [class*=' imghvr-'] {
+	position: relative;
+	display: inline-block;
+	margin: 0;
+	max-width: 100%;
+	overflow: hidden;
+	-webkit-backface-visibility: hidden;
+	backface-visibility: hidden;
+	-moz-osx-font-smoothing: grayscale;
+	-webkit-transform: translateZ(0);
+	transform: translateZ(0);
+}
+
+.service-buttons {
+	a {
+		height: 100%;
+	}
+
+	.title {
+		position: absolute;
+		top: 22%;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		opacity: 0;
+		transition: all 300ms;
+		color: #000;
+		@include mq(lg) {
+			top: 25%;
+		}
+
+		@include mq(xl) {
+			top: 35%;
+		}
+	}
+
+	img {
+		opacity: 1;
+		transition: all 300ms;
+	}
+}
+
+.service-buttons:hover {
+	a {
+		
+		text-decoration: none;
+	}
+
+	img {
+		transition: all .3/s;
+		opacity: 0;
+	}
+
+
+	.title {
+		opacity: 1;
+		transition: all .3s;
+		text-decoration: none;
+	}
+}
+

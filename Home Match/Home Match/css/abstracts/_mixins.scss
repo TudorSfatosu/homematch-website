@@ -1,0 +1,193 @@
+// Breakpoints mixin
+@mixin mq($class) {
+	@if $class == "" {
+		@content;
+	}
+	@else if $class == xs {
+		@media (max-width: $xs) {
+			@content;
+		}
+	}
+	@else if $class == sm {
+		@media (min-width: $sm) {
+			@content;
+		}
+	}
+	@else if $class == md {
+		@media (min-width: $md) {
+			@content;
+		}
+	}
+	@else if $class == lg {
+		@media (min-width: $lg) {
+			@content;
+		}
+	}
+	@else if $class == xl {
+		@media (min-width: $xl) {
+			@content;
+		}
+	}
+	@else if $class == xxl {
+		@media (min-width: $xxl) {
+			@content;
+		}
+	}
+	@else {
+		@warn "Breakpoint mixin supports: xs, sm, md, lg, xl, xxl; Yours is:" $class;
+	}
+}
+
+// Color mixin generating .color-text, .color-hover, .color-bg, color-bg-hover
+@mixin colorSet($colorName) {
+	// Text
+	.#{"" + $colorName}-text {
+		-moz-transition: color .2s ease-in;
+		-o-transition: color .2s ease-in;
+		-webkit-transition: color .2s ease-in;
+		color: map-get($colors, $colorName);
+	}
+
+	.#{"" + $colorName}-circle {
+		border: 2px solid map-get($colors, $colorName);
+	}
+
+	-text:focus,
+	.#{"" + $colorName}-text:focus span:before {
+		color: map-get($colors, "#{$colorName}-hover");
+		//text-decoration: none;
+	}
+	// Background
+	.#{"" + $colorName}-bg {
+		background-color: map-get($colors, $colorName);
+	}
+	// Transparent Background
+	.#{"" + $colorName}-bg--tp {
+		background-color: transparentize(map-get($colors, $colorName), 0.1);
+	}
+	// Buttons
+	.#{"" + $colorName}-btn {
+		color: map-get($colors, $colorName);
+		border: 2px solid map-get($colors, $colorName);
+		border-radius: 5px;
+
+		&:hover {
+			text-decoration: none;
+			color: darken(map-get($colors, $colorName), 15%);
+			border: 2px solid darken(map-get($colors, $colorName), 15%);
+		}
+	}
+
+	.#{"" + $colorName}-border-top {
+		border-top: 1px solid map-get($colors, $colorName);
+	}
+
+	.#{"" + $colorName}-border {
+		border: 3px solid map-get($colors, $colorName) !important;
+		border-top: transparent;
+	}
+	// Horizontal line
+	.#{"" + $colorName}-hr {
+		border-bottom: 1px solid map-get($colors, $colorName);
+		width: 90%;
+		margin-left: 5%;
+	}
+
+	.#{"" + $colorName}-border-bottom {
+		border-bottom: 1px solid map-get($colors, $colorName);
+
+		@include mq(sm) {
+			border-bottom: 2px solid map-get($colors, $colorName);
+		}
+
+		@include mq(md) {
+			border-bottom: 3px solid map-get($colors, $colorName);
+		}
+	}
+	// -text-hover Delete?
+	.#{"" + $colorName}-text-hover:hover,
+	.#{"" + $colorName}-text-hover:hover span:before,
+	.#{"" + $colorName}-text-hover.active, {
+		color: map-get($colors, "#{$colorName}-hover") !important;
+		// text-decoration: none;
+		cursor: pointer;
+	}
+	// Folds
+	.#{"" + $colorName}-fold--top::before,
+	.#{"" + $colorName}-micro-fold--top::after {
+		border-color: map-get($colors, $colorName) transparent transparent transparent;
+	}
+
+	.#{"" + $colorName}-fold--right::before,
+	.#{"" + $colorName}-micro-fold--right::after {
+		border-color: transparent map-get($colors, $colorName) transparent transparent;
+	}
+
+	.#{"" + $colorName}-fold--left::before,
+	.#{"" + $colorName}-micro-fold--left::after {
+		border-color: transparent transparent transparent map-get($colors, $colorName);
+	}
+
+	.#{"" + $colorName}-fold--bottom::before,
+	.#{"" + $colorName}-micro-fold--bottom::after {
+		border-color: transparent transparent map-get($colors, $colorName) transparent;
+	}
+}
+
+
+// Breakpoints Spread functions
+@function get_bp($label) {
+	@return map-get($breakpoints, $label);
+}
+
+@function round-num($num) {
+	@return round($num*100)/100;
+}
+
+@mixin bp($name) {
+	@if not map-has-key($breakpoints, $name) {
+		@warn "Invalid breakpoint `#{$name}`.";
+	}
+	@else {
+		@if map-get($breakpoints, $name) {
+			@media (min-width: map-get($breakpoints, $name)) {
+				@content;
+			}
+		}
+		@else {
+			@content;
+		}
+	}
+}
+
+// Breakpoints Spread mixin
+// @TODO add shorthand css
+// @TODO add possibilities of percentage values
+// @TODO Merge multiple queries into one
+@mixin spread-value($property, $value-start, $value-end, $bp-start: xs, $bp-end: xl) {
+	@if type-of($value-start) != number or type-of($value-end) != number {
+		@warn "Either $value-start or $value-end is not a number: `#{$value-start}` | `#{$value-end}`"
+	}
+	@else {
+		#{$property}: #{$value-start};
+		$value-distance: $value-end - $value-start;
+		$bp-distance: get_bp($bp-end) - get_bp($bp-start);
+		$bp-keys: map-keys($breakpoints);
+		$bp-list: ();
+
+		$i: index($bp-keys, $bp-start);
+
+		@while $i <= length($bp-keys) and nth($bp-keys, $i) != $bp-end {
+			$i: $i + 1;
+			$bp-list: join($bp-list, nth($bp-keys, $i));
+		}
+
+		@each $key in $bp-list {
+			$percentage: ( get-bp($key) - get_bp($bp-start) ) / $bp-distance;
+
+			@include bp($key) {
+				#{$property}: round-num(( $value-distance * $percentage ) + $value-start);
+			}
+		}
+	}
+}

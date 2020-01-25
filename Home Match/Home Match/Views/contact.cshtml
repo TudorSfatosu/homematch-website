@@ -1,0 +1,101 @@
+﻿@inherits UmbracoViewPage<Contact>
+@using ContentModels = Umbraco.Web.PublishedModels;
+@{
+	Layout = "master.cshtml";
+
+	var SettingsNode = @Umbraco.Content(1142);
+	var Settings = new SiteSettings(SettingsNode);
+
+	var coordinates = Model.MapCoordinates.ToString().Split(',');
+
+	var latitude = coordinates[0];
+	var longitude = coordinates[1];
+	var zoomLevel = coordinates[2];
+
+	// Build the coordinates string
+	var coordinatesString = longitude + "," + latitude + "," + longitude + "," + latitude;
+}
+
+@section Scripts {
+	@*<script src="~/scripts/jquery.unobtrusive-ajax.min.js"></script>
+		<script src="~/scripts/jquery.validate.js"></script>
+		<script src="~/scripts/jquery.validate.unobtrusive.js"></script>
+		<script src="~/scripts/vendor/mvcfoolproof.unobtrusive.min.js"></script>*@
+}
+
+@Html.Partial("SideButton")
+
+<!-- Full Page Image Header with Vertically Centered Content -->
+<header class="contact-banner" style="background: url(@Model.TopImage.Url)">
+	<div class="container-fluid">
+		<div class="row px-3">
+			<div class="col-11 offset-lg-1">
+				<h1 class="white-text py-5 all-caps">@Model.H1</h1>
+			</div>
+		</div>
+		<div class="row px-3 pb-4 pb-lg-0">
+			<div class="col-11 offset-lg-1 col-lg-3 pb-2 pb-lg-0">
+				<a class="white-text white-text-hover address" href="#">@Settings.RichAddress</a>
+			</div>
+			<div class="offset-lg-1 col-12 offset-lg-0 col-lg-3">
+				<ul class="no-bullets py-2 p-0">
+					<li>
+						<a class="white-text white-text-hover phone" href="tel:@Settings.Phone">T: @Settings.Phone</a>
+					</li>
+					<li>
+						<a class="white-text white-text-hover mail" href="mailto:@Settings.EmailAddress">@Settings.EmailAddress</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</header>
+
+<!-- Contact Form -->
+<section class="hm-form contact-form blue-bg" id="form">
+	<div class="container-fluid yellow-bg main-container">
+		<div class="row">
+			<div class="col-12 offset-lg-1 col-lg-5">
+
+				@if (TempData["success"] != null)
+				{
+					if ((bool)TempData["success"] == true)
+					{
+						<div class="form-msg">
+							<p class="success">Thank you, your message has been sent to The PX Partnership.</p>
+							@if (TempData["Message"] != null)
+							{
+								var MailchimpMessage = (MvcHtmlString)TempData["Message"];
+								<div class="mail-list">
+									@MailchimpMessage
+								</div>
+							}
+						</div>
+					}
+					else if ((bool)TempData["success"] == false)
+					{
+						<div class="form-msg">
+							@Html.ValidationMessage("reCAPTCHA", new { @class = "text-danger" })
+						</div>
+					}
+				}
+				@Html.Action("~/views/partials//ContactForm.cshtml")
+			</div>
+			<div class="col-12 col-lg-5 pt-lg-5 px-4">
+				<h4 class="white-text all-caps pb-4 pt-xl-4">@Model.MapHeader</h4>
+				<iframe class="map"
+						frameborder="0"
+						scrolling="no"
+						marginheight="0"
+						marginwidth="0"
+						src="https://www.openstreetmap.org/export/embed.html?bbox=@coordinatesString&amp;layer=mapnik&amp;marker=@Model.MapCoordinates"
+						style="border: 1px solid black"></iframe>
+				<br />
+				<small>
+					<a class="white-text white-text-hover" href="https://www.openstreetmap.org/?mlat=@latitude&amp;mlon=@longitude#map=@zoomLevel/@latitude/@longitude&amp;layers=N">View Larger Map</a>
+				</small>
+			</div>
+		</div>
+	</div>
+</section>
+<!-- Contact Form  -->

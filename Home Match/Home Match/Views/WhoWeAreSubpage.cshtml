@@ -1,0 +1,110 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage<ContentModels.WhoWeAreSubpage>
+@using ContentModels = Umbraco.Web.PublishedModels;
+@{
+	Layout = "master.cshtml";
+	var count = 0;
+	var SettingsNode = @Umbraco.Content(1142);
+	var Settings = new SiteSettings(SettingsNode);
+}
+
+@Html.Partial("SideButton")
+
+@Html.Partial("SimpleBanner2")
+
+<!-- Banner -->
+<section class="container wide-container pb-md-5">
+	<div class="row pt-5 pb-2">
+		<div class="col-12 text-center">
+			<h1 class="blue-text">@Model.H1</h1>
+		</div>
+	</div>
+	<div class="row pt-2 pb-3">
+		<div class="col-12 text-center">
+			<div class="blue-text heavy-text">@Model.Subheading</div>
+		</div>
+	</div>
+	<div class="row pt-3 pb-3">
+		<div class="col-12 text-center text-md-left pb-4 pb-md-0">
+			<div class="text-muted text-center">@Model.Text</div>
+		</div>
+	</div>
+</section>
+<!-- / Banner -->
+<!-- Staff Section -->
+<section class="container-fluid staff-container mb-5 box-shadow-3">
+	@if (Model.Staff.Any())
+	{
+		foreach (var people in @Model.Staff)
+		{
+			count++;
+			var staff = new Staff(people);
+			if (count % 2 == 1)
+			{
+				@: <div class="row">
+				}
+				<div class="col-12 col-xl-6 mb-5 mb-md-0 pb-5 py-md-5 column">
+
+					<div class="row">
+						<div class="col-12 col-md-5">
+							@if (@staff.CroppedPortrait != null)
+							{
+								<img class="shadow" width="150" src="@staff.CroppedPortrait.GetCropUrl("square")" alt="Portrait of @staff.FullName" />
+							}
+							else if (@staff.Gender == "gender1")
+							{
+								<img width="150" src="@Model.Gender1Picture.Url" alt="Portrait of @staff.FullName" />
+							}
+							else if (@staff.Gender == "gender2")
+							{
+								<img width="150" src="@Model.Gender2Picture.Url" alt="Portrait of @staff.FullName" />
+							}
+							<div class="image-caption text-center heavy-text py-3">
+								@staff.FullName
+							</div>
+						</div>
+						<div class="col-12 col-md-7 text-center text-md-left">
+							<div class="header">
+								<h5 class="all-caps pb-3">
+									@staff.Position
+								</h5>
+							</div>
+
+							<div class="body grey-text">
+								@staff.Description
+							</div>
+
+							<div class="footer">
+								<span class="icon" style="background-image: url(@Model.MailIcon.Url)"></span>
+								<a href="mailto:@staff.Email?subject=Message from the HomeMatch webiste&body=Hi @staff.FullName,%0D%0A%0D%0AKind regards," class="blue-text email heavy-text">@staff.Email</a>
+							</div>
+						</div>
+					</div>
+
+				</div>
+				if (@count % 2 == 0)
+				{
+				@: </div>
+			}
+		}
+	}
+
+</section>
+<!-- / Staff Section -->
+<!-- Nav cards -->
+<section class="pt-5">
+	<div class="iso-background  pt-md-3 mt-md-5" style="background: url('@Model.CardsLeftIsoBackground.Url'), url('@Model.CardsRightIsoBackground.Url')">
+		<div class="container wide-container">
+			<div class="card-deck mb-3 text-center">
+
+				@if (Model.NavigationsCards.Any())
+				{
+					foreach (var cards in @Model.NavigationsCards)
+					{
+						@Html.Partial("NavigationCards", new NavCard(cards));
+					}
+				}
+			</div>
+		</div>
+	</div>
+</section>
+<!-- / Nav cards -->

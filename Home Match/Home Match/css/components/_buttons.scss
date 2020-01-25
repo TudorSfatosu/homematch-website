@@ -1,0 +1,328 @@
+.btn-lg {
+	line-height: 2rem;
+	border-radius: 2px;
+	padding: .6em .9em;
+	font-size: 1.5rem;
+	@include mq(md) {
+		padding: 0.7em 1.25em;
+	}
+}
+
+.btn-md {
+	line-height: 1.5rem;
+	border-radius: 3px;
+	padding: 0.5em 1em 0.5em 1em;
+	font-size: 1rem;
+	@include mq(md) {
+		font-size: 1.2rem;
+		padding: 0.4em 1.25em 0.6em 1.25em;
+	}
+}
+
+.btn-sm {
+	line-height: 1rem;
+	border-radius: 2px;
+	padding: 0.7em 1.25em;
+	font-size: 1.15rem;
+}
+
+.btn-blue {
+	color: $white;
+	background: $blue;
+	&:hover {
+		color: $blue;
+		background: $white;
+		border: 1px solid $blue;
+	}
+}
+
+.btn-grey {
+	color: $white;
+	background: $grey;
+
+	&:hover {
+		color: $grey;
+		background: $white;
+		border: 1px solid $grey;
+	}
+}
+
+.btn-grey2 {
+	color: $white;
+	background: $grey2;
+
+	&:hover {
+		color: $grey2;
+		background: $white;
+		border: 1px solid $grey2;
+	}
+}
+
+.btn-boomerang-red {
+	color: $white;
+	background: $boomerang-red;
+
+	&:hover {
+		color: $boomerang-red;
+		background: $white;
+		border: 1px solid $boomerang-red;
+	}
+}
+
+
+.btn-green {
+	color: $white;
+	background: $green;
+
+	&:hover {
+		color: $green;
+		background: $white;
+		border: 1px solid $green;
+	}
+}
+
+.service-button {
+	width: 9em;
+	@include mq(lg) {
+		width: 10em;
+	}
+	@include mq(xl) {
+		width: 15em;
+	}
+}
+
+.arrow-button {
+	color: $green;
+	font-size: 1.4em;
+	font-weight: 500;
+	border: 2px solid $blue;
+	padding: 0.5em 1em !important;
+	height: 1em;
+	border-radius: 12px;
+	&:hover {
+		text-decoration: none;
+	}
+}
+
+.buttons-container {
+	margin: 0 auto;
+	text-align: center;
+	overflow: hidden;
+
+	.content {
+		padding: 2em 1em 5em;
+		z-index: 1;
+		max-width: 1000px;
+		margin: 0 auto;
+	}
+
+	.content h2 {
+		margin: 0 0 2em;
+	}
+
+	.content p {
+		margin: 1em 0;
+		padding: 0 0 2em;
+		font-size: 0.85em;
+	}
+
+	.box {
+		padding: 0.3em 0;
+		display: -webkit-flex;
+		display: -ms-flexbox;
+		display: flex;
+		-webkit-flex-wrap: wrap;
+		-ms-flex-wrap: wrap;
+		flex-wrap: wrap;
+		-webkit-justify-content: center;
+		justify-content: flex-end;
+	}
+	/* Box colors */
+	.bg-1 {
+		background: $white;
+	}
+
+	.bg-2 {
+		background: #7986cb;
+		color: $white;
+	}
+
+	.bg-3 {
+		background: $blue;
+		color: #fff;
+	}
+	/* Common button styles */
+	.button {
+		float: left;
+		min-width: 150px;
+		max-width: 250px;
+		display: block;
+		margin: 1em;
+		padding: 1em 2em;
+		border: none;
+		background: none;
+		color: inherit;
+		position: relative;
+		z-index: 1;
+		-webkit-backface-visibility: hidden;
+		-moz-osx-font-smoothing: grayscale;
+	}
+
+	.button:focus {
+		outline: none;
+	}
+
+	.button > span {
+		vertical-align: middle;
+	}
+	/* Text color adjustments (we could stick to the "inherit" but that does not work well in Safari) */
+	.bg-1 .button {
+		color: $white;
+		border-color: $white;
+	}
+
+	.bg-2 .button {
+		color: $blue;
+		border-color: $blue;
+	}
+
+	.bg-3 .button {
+		color: $white;
+		border-color: $white;
+	}
+	/* Sizes */
+	.button--size-s {
+		font-size: 14px;
+	}
+
+	.button--size-m {
+		font-size: 16px;
+	}
+
+	.button--size-l {
+		font-size: 18px;
+	}
+	/* Typography and Roundedness */
+	.button--text-upper {
+		letter-spacing: 2px;
+		text-transform: uppercase;
+	}
+
+	.button--text-thin {
+		font-weight: 300;
+	}
+
+	.button--text-medium {
+		font-weight: 500;
+	}
+
+	.button--text-thick {
+		font-weight: 600;
+	}
+
+	.button--round-s {
+		border-radius: 5px;
+	}
+
+	.button--round-m {
+		border-radius: 15px;
+	}
+
+	.button--round-l {
+		border-radius: 40px;
+	}
+	/* Borders */
+	.button--border-thin {
+		border: 1px solid;
+	}
+
+	.button--border-medium {
+		border: 2px solid;
+	}
+
+	.button--border-thick {
+		border: 3px solid;
+	}
+	/* Individual button styles */
+	/* Sacnite */
+	.button.button--sacnite {
+		color: $green;
+		width: 54px;
+		height: 54px;
+		min-width: 0;
+		padding: 0;
+		-webkit-transition: color 0.3s;
+		transition: color 0.3s;
+		border-radius: 10px;
+	}
+
+	.button--scanite.button--round-l {
+		border-radius: 50%;
+	}
+
+	.button--sacnite.button--inverted {
+		color: $blue;
+	}
+
+	.button--sacnite::before {
+		content: '';
+		position: absolute;
+		top: -20%;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		border-radius: inherit;
+		z-index: -1;
+		box-shadow: inset 0 0 0 2px $blue;
+		-webkit-transform: scale3d(1, 1, 1);
+		transform: scale3d(1, 1, 1);
+		-webkit-transition: box-shadow 0.3s, -webkit-transform 0.3s;
+		transition: box-shadow 0.3s, transform 0.3s;
+	}
+
+	.button--sacnite.button--inverted::before {
+		box-shadow: inset 0 0 0 35px #fff;
+	}
+
+	.button--sacnite .button__icon {
+		font-size: 22px;
+		width: 22px;
+	}
+
+	.button--sacnite > span {
+		position: absolute;
+		opacity: 0;
+		pointer-events: none;
+	}
+
+	.button--sacnite:hover {
+		color: $white;
+		cursor: pointer;
+	}
+
+	.button--sacnite.button--inverted:hover {
+		color: $white;
+	}
+
+	.button--sacnite:hover::before {
+		box-shadow: inset 0 0 0 35px $blue;
+		-webkit-transform: scale3d(0.9, 0.9, 1);
+		transform: scale3d(0.9, 0.9, 1);
+	}
+
+	.button--sacnite.button--inverted:hover::before {
+		box-shadow: inset 0 0 0 2px #fff;
+	}
+}
+
+.btn-z {
+	position: fixed;
+	top: 50%;
+	right: -90px;
+	transform: rotateZ(270deg);
+	width: 9em;
+	line-height: 0em;
+	padding: 1em 0 2em 0;
+	border-radius: 8px;
+	z-index: 99;
+}

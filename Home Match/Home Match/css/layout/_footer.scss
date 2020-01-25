@@ -1,0 +1,19 @@
+footer {
+	.nav-list {
+		a {
+			font-size: 1.05em;
+			font-weight: 500;
+			color: $blue;
+		}
+
+		@include mq(md) {
+			li:not(:last-child) {
+				a:after {
+					content: "|";
+					display: inline;
+					padding: 0 12px;
+				}
+			}
+		}
+	}
+}

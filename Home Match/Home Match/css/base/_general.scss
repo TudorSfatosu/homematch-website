@@ -1,0 +1,102 @@
+html {
+	font-size: 14px;
+	overflow-x: hidden;
+}
+
+@media (min-width: 768px) {
+	html {
+		font-size: 16px;
+	}
+}
+
+.container {
+	max-width: 960px;
+}
+
+.pricing-header {
+	max-width: 700px;
+}
+
+.card-deck .card {
+	min-width: 220px;
+}
+
+.border-top {
+	border-top: 1px solid #e5e5e5;
+}
+
+.border-bottom {
+	border-bottom: 1px solid #e5e5e5;
+}
+
+.box-shadow {
+	box-shadow: 0 95px 26px -100px rgba(0, 0, 0, 0.52);
+}
+
+.box-shadow-2 {
+	box-shadow: 0px -23px 15px -16px rgba(0, 0, 0, 0.06), 1px 19px 39px -28px rgba(0, 0, 0, 0.17);
+	border: 1px solid unquote('#79797912');
+}
+
+.box-shadow-3 {
+	box-shadow: 0 95px 96px -120px rgba(0, 0, 0, 0.32);
+}
+
+h1 {
+	font-size: 1.75rem;
+	@include mq(md) {
+		font-size: 2rem;
+	}
+}
+
+.section-title {
+	font-size: 3rem;
+	text-transform: uppercase;
+}
+
+.wide-container {
+	@include mq(xl) {
+		max-width: 1290px;
+	}
+}
+
+.widest-container {
+	@include mq(lg) {
+		max-width: 1080px;
+	}
+	@include mq(xl) {
+		max-width: 1430px;
+	}
+}
+
+.no-bullets {
+	list-style: none;
+}
+
+.light-text {
+	font-weight: 300;
+}
+
+.heavy-text {
+	font-weight: 700;
+}
+
+.page-icon {
+	margin-top: -4.5em;
+}
+
+.all-caps {
+	text-transform: uppercase;
+}
+
+.web-cards-container {
+	h5 {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		margin:0;
+	}
+	p {
+		min-height: 11em;
+	}
+}

@@ -1,0 +1,44 @@
+$blue: #000038;
+$green: #93D600;
+$fluorescent-green: #6FE040;
+$white: #fff;
+$black: #000;
+$grey: #707070;
+$grey2: #c1c1c1;
+$grey3: #C6C6C6;
+$light-grey: #E8E8E8;
+$boomerang-red: #E73E11;
+
+// colors set array
+$colors: ( 
+	white: $white, 
+	white-hover: darken($white, 5%), 
+	black: $black, 
+	black-hover: darken($black, 18%), 
+	green: $green, 
+	green-hover: darken($green, 18%),
+	fluorescent-green: $fluorescent-green, 
+	fluorescent-green-hover: darken($fluorescent-green, 18%),
+	blue: $blue,
+	blue-hover: darken($blue, 18%),
+	grey: $grey,
+	grey-hover: darken($grey, 18%),
+	grey2: $grey2,
+	grey2-hover: darken($grey2, 18%),
+	grey3: $grey3,
+	grey3-hover: darken($grey3, 18%),
+	light-grey: $light-grey,
+	light-grey-hover: darken($light-grey, 20%),
+	boomerang-red: $boomerang-red,
+	boomerang-red-hover: darken($boomerang-red, 20%)
+);
+
+//layout breakpoints
+$xs: 576px;
+$sm: 577px;
+$md: 768px;
+$lg: 992px;
+$xl: 1200px;
+$xxl: 1750px;
+
+$breakpoints: ( xs: 576px, sm: 577px, md: 768px, lg: 992px, xl: 1200px, xxl: 1750px );

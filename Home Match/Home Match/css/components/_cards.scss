@@ -1,0 +1,80 @@
+.card-header {
+	background-position-x: center !important;
+	background-position-y: center !important;
+	height: 10em;
+
+	@include mq(md) {
+		height: 7em;
+	}
+
+	@include mq(lg) {
+		height: auto;
+	}
+
+	h4 {
+		padding-top: 30px;
+		padding-bottom: 30px;
+		float: left;
+		font-size: 1.5rem;
+		@include mq(md) {
+			font-size: 1.35rem;
+		}
+		@include mq(lg) {
+			font-size: 1.5rem;
+		}
+	}
+
+	img {
+		float: right;
+	}
+
+	.card-icon {
+		max-width: 4em;
+
+		@include mq(lg) {
+			max-width: 5em;
+		}
+
+		@include mq(xl) {
+			max-width: 6em;
+		}
+	}
+}
+
+.card-body {
+	padding: 0 1.25rem;
+}
+
+.simple-cards {
+	img {
+		height: 21em;
+		vertical-align: middle;
+		border-style: none;
+		padding: 1em;
+		width: 100%;
+		object-fit: cover;
+		@include mq(sm) {
+			height: 34em;
+		}
+		@include mq(md) {
+			height: 13em;
+		}
+
+		@include mq(lg) {
+			height: 15em;
+		}
+
+		@include mq(xl) {
+			height: 18em;
+		}
+	}
+}
+
+.card-deck {
+	div.card {
+		min-width: fit-content;
+		@include mq(md) {
+			min-width: 220px;
+		}
+	}
+}

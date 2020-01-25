@@ -1,0 +1,195 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage<ContentModels.RelocationSubpage2>
+@using ContentModels = Umbraco.Web.PublishedModels;
+@{
+	Layout = "master.cshtml";
+}
+
+@Html.Partial("SideButton")
+
+@Html.Partial("SimpleBanner")
+
+<!-- Intro section -->
+<section class="container wide-container">
+	@if (@Model.Button1Link != null)
+	{
+		<div class="row pt-5 pb-2">
+			<div class="col-12 text-center">
+				<h1 class="blue-text heavy-text">@Model.H1</h1>
+			</div>
+		</div>
+
+	}
+
+	@if (@Model.IntroText != null)
+	{
+		<div class="row pt-2 pb-3">
+			@if (@Model.PageIcon != null)
+			{
+				<div class="col-1 text-center">
+					<img class="page-icon d-none d-lg-block" src="@Model.PageIcon.Url" width="100" alt="@Path.GetFileNameWithoutExtension(@Model.PageIcon.Url).Replace("-", " ")" />
+				</div>
+			}
+			<div class="col-10 text-center">
+				<h4 class="blue-text">@Model.IntroText</h4>
+			</div>
+		</div>
+	}
+
+	@if (@Model.IntroSubtext.Any() && @Model.IntroSubtext != null)
+	{
+		<div class="row pt-3 p-5">
+			<div class="col-12 text-center">
+				<h5 class="text-muted">@Model.IntroSubtext</h5>
+			</div>
+		</div>
+	}
+
+	@if (@Model.Button1Link != null)
+	{
+		<div class="row">
+			<div class="my-0 mx-auto py-5">
+				<a href="@Model.Button1Link" class="btn btn-md btn-block btn-blue">@Model.Button1Text</a>
+			</div>
+		</div>
+	}
+
+</section>
+<!-- / Intro section -->
+<!-- List-image section -->
+<section class="fluid-container px-4 px-xl-5 @Model.BackgroundColor.Label-bg list-image-section">
+	<div class="container @Model.ListContainerType">
+		<div class="row mb-5">
+			<div class="@(@Model.ImagePosition == "left" ? "order-1 order-xl-1" : "order-1 order-xl-0" ) col-12 col-xl-4 p-3">
+				@if (@Model.Title != null)
+				{
+					<h5 class="step-title py-4 @Model.ListTitleColor.Label-text">
+						@Model.Title
+					</h5>
+				}
+				@if (Model.Bullets != null && Model.Bullets.Any())
+				{
+					<ul class="step-bullets pl-5 @Model.BulletsColor.Label-text">
+						@foreach (var bullets in Model.Bullets)
+						{
+							var bullet = new Bullets(bullets);
+
+							if (@bullet.BulletText != null)
+							{
+								<li class="step-bullet pb-3">
+									@bullet.BulletText
+								</li>
+							}
+
+						}
+					</ul>
+				}
+				else
+				{
+					<div class="@Model.BulletsColor.Label-text">
+						@Model.ListReplacement
+					</div>
+				}
+			</div>
+			<div class="@(@Model.ImagePosition == "left" ? "order-0 order-xl-0" : "order-0 order-xl-1" ) col-12 col-xl-8 step-image my-1 my-lg-4" style="background: url(@Model.Image.Url)">
+			</div>
+		</div>
+	</div>
+</section>
+<!-- / List-image section -->
+<!-- Cards section -->
+@*@if (Model.SimpleCards.Any() && Model.SimpleCards != null)
+	{
+		<section class="container wide-container pb-5">
+			<div class="row simple-cards py-5 mx-1 mx-md-0">
+				@foreach (var cards in @Model.SimpleCards)
+				{
+					var card = new SimpleCard(cards);
+					<div class="col-12 col-md-4 p-0 @card.BackgroundColor.Label-bg">
+						<img src="@card.Image.Url" alt="@Path.GetFileNameWithoutExtension(@card.Image.Url).Replace("-", " ")" />
+						<h5 class="px-3 @card.TitleColor.Label-text">@card.Title</h5>
+						<div class="mb-5 mb-md-0 px-3 pt-3 pb-md-4 @card.ParagraphColor.Label-text">
+							@card.Paragraph
+						</div>
+					</div>
+				}
+			</div>
+		</section>
+	}*@
+
+<div class="container wide-container py-5">
+	<section class="pb-5">
+		<ul id="da-thumbs" class="da-thumbs row simple-cards py-5 mx-1 mx-md-0 px-0">
+			@foreach (var cards in @Model.SimpleCards)
+			{
+				var card = new SimpleCard(cards);
+				<li class="col-12 col-md-4 p-0">
+					<a class="@card.BackgroundColor.Label-bg">
+						<img src="@card.Image.Url" alt="@Path.GetFileNameWithoutExtension(@card.Image.Url).Replace("-", " ")" />
+						<h5 class="px-3 @card.TitleColor.Label-text">@card.Title</h5>
+						<p class="mb-5 mb-md-0 px-3 pt-3 pb-md-4 @card.ParagraphColor.Label-text paragraph">
+							@card.Paragraph
+						</p>
+						<div class="static-cont @card.InvertedBackgroundColor.Label-bg">
+							<img src="@card.Image.Url" alt="@Path.GetFileNameWithoutExtension(@card.Image.Url).Replace("-", " ")" />
+							<h5 class="px-3 @card.InvertedTitleColor.Label-text">@card.Title</h5>
+							<p class="mb-5 mb-md-0 px-3 pt-3 pb-md-4 @card.InvertedParagraphColor.Label-text paragraph">
+								@card.Paragraph
+							</p>
+						</div>
+					</a>
+				</li>
+			}
+		</ul>
+	</section>
+</div>
+
+<!-- / Cards section -->
+<!-- Image-image section -->
+<section class="container @Model.ImageContainerType  image-image-section box-shadow-2">
+	<div class="row">
+		<div class=" @(@Model.Position == "left" ? "order-0" : "order-1" ) col-12 col-md-12 @(Model.WiderSmallColumn ? "col-xl-4": "col-xl-3") py-xl-3 px-xl-5  @Model.SmallTextBackgroundColor.Label-bg small-column">
+			<div class="row">
+				@if (@Model.SmallColumnImage != null)
+				{
+					<div class="col-3 col-xl-12 p-0 my-auto d-flex">
+						<img class="mx-auto pb-3" src="@Model.SmallColumnImage.Url" />
+					</div>
+				}
+				<div class="px-5 py-3 px-xl-0 @(@Model.SmallColumnImage != null ? "col-9 col-xl-12" : "col-12") ">
+					<h5 class="@Model.SmallColumnTitleColor.Label-text">@Model.SmallColumnTitle</h5>
+					<div class="@Model.SmallColumnTextColor.Label-text">@Model.SmallColumnText</div>
+				</div>
+			</div>
+		</div>
+		<div class=" @(@Model.Position == "left" ? "order-1" : "order-0" ) col-12 col-md-12  @(Model.WiderSmallColumn ? "col-xl-8": "col-xl-9") step-image @Model.Background.Label-bg">
+			<div class="row">
+				<div class="col-12 col-md-6 col-xl-8 big-image py-3  @(@Model.Position == "left" ? "order-1" : "order-0")">
+					<img src="@Model.BigImage.Url" />
+				</div>
+				<div class="col-12 col-md-6 col-xl-4 @(@Model.Position == "left" ? "order-0" : "order-1") px-5  @(@Model.Position == "left" ? " pr-xl-3 pl-xl-5" : " pl-xl-3 pr-xl-5")">
+					<h5 class="step-title py-4 @Model.TitleColor.Label-text">
+						@Model.SectionTitle
+					</h5>
+
+					<div class="step-text white-text pb-4 @Model.TextColor.Label-text">
+						@Model.Text
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<!-- / Image-image section -->
+<!-- / Nav cards -->
+<section class="container">
+	<div class="card-deck mb-3 pt-5 text-center">
+		@if (Model.NavigationCards.Any())
+		{
+			foreach (var cards in @Model.NavigationCards)
+			{
+				@Html.Partial("NavigationCards", new NavCard(cards));
+			}
+		}
+	</div>
+</section>
+<!-- / Nav cards -->

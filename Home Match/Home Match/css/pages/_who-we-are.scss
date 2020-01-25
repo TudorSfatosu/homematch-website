@@ -1,0 +1,57 @@
+.staff-container {
+	width: 100%;
+	@include mq(sm) {
+	}
+
+	@include mq(md) {
+		width: 83%;
+	}
+
+	@include mq(lg) {
+	}
+
+	@include mq(xl) {
+	}
+
+	img {
+		margin: 0 auto;
+		display: block;
+		width: 10em;
+		border-radius: 100%;
+
+		@include mq(lg) {
+			width: 13em;
+		}
+
+		@include mq(xl) {
+		}
+
+
+
+		&.shadow {
+			box-shadow: 6px 15px 16px -10px rgba(0, 0, 0, 0.3);
+		}
+	}
+
+	.icon {
+		width: 31px;
+		height: 18px;
+		display: inline-block;
+		background-size: contain;
+		background-repeat: no-repeat;
+		margin-right: 1px;
+	}
+
+	.image-caption {
+	}
+
+	h5 {
+	}
+
+	p {
+		line-height: 1.75em;
+	}
+
+	.email {
+	}
+}

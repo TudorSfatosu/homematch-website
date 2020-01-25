@@ -1,0 +1,98 @@
+.iso-background {
+	background-repeat: no-repeat !important;
+	background-position-x: left, right !important;
+	background-size: 50%, 50% !important;
+}
+
+.single-iso-background {
+	background-repeat: no-repeat !important;
+	background-size: cover;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	background-position-x: center !important;
+	min-height: 27em;
+
+	@include mq(md) {
+		min-height: 24em;
+	}
+
+	.iso-text {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		font-size: 1.5em;
+	}
+
+	.iso-images {
+		flex-direction: column;
+		text-align: center;
+		@include mq(sm) {
+			flex-direction: row;
+			justify-content: center;
+		}
+		@include mq(xl) {
+			justify-content: left;
+		}
+
+		img {
+			height: 3em;
+			padding-right: 2em;
+
+			@include mq(md) {
+				height: 3em;
+			}
+
+			@include mq(xl) {
+				height: 4em;
+			}
+		}
+	}
+}
+
+.hero-iso {
+	h4 {
+		line-height: 2em;
+	}
+}
+
+.image-image-section {
+	.big-image {
+		img {
+			width: 100%;
+			object-fit: cover;
+			height: 100%;
+		}
+	}
+
+	.small-column {
+		img {
+			height: 6em;
+
+			@include mq(md) {
+				height: 7em;
+				width: auto;
+			}
+
+			@include mq(lg) {
+				height: 7em;
+				width: auto;
+			}
+
+			@include mq(xl) {
+				height: 8em;
+			}
+		}
+	}
+}
+
+.list-image-section {
+	.step-image {
+		background-position-x: center !important;
+		height: 19em;
+		@include mq(xl) {
+			height: auto;
+		}
+	}
+}
